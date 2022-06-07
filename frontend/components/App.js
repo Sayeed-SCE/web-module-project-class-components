@@ -29,6 +29,50 @@ import Form from './Form';
 
      }
    }
+
+   const newTodo  = {
+     task: "cook things",
+     id: Date.now(),
+     completed: false
+   }
+    handleAdd = () => {
+      this.setState({
+        ...this.state,
+        todos: [...this.state.todos, newTodo]
+      });
+    }
+
+
+
+
+   handleClear = () => {
+      this.setState({
+        ...this.state,
+        todos: this.state.todos.filter(todo => {
+          return (todo.completed === false)
+        })
+
+      })
+   }
+   handleToggle = (clickedId) => {
+     
+
+     this.setState({
+       ...this.state, 
+       todos: this.state.todos.map(todo => {
+         if (todo.id === clickedId){
+           return {
+             ...todo, 
+             completed: !todo.completed
+           }
+         }
+
+           return todo
+         
+       })
+     })
+
+   }
    
   render() {
     const { todos } = this.state;
@@ -36,9 +80,9 @@ import Form from './Form';
     return (
       <div>
         <h1>Todos</h1>
-       <TodoList todos={todos}/>
-       <Form />
-        <button>Hide Completed</button>
+       <TodoList  handleToggle={this.handleToggle} todos={todos}/>
+       <Form handleAdd = {this.handleAdd} />
+        <button onClick = {this.handleClear}>Hide Completed</button>
       
       </div>
     )
