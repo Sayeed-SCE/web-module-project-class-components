@@ -30,11 +30,13 @@ import Form from './Form';
      }
    }
 
-   const newTodo  = {
+   const new_Todo =  {
+
      task: "cook things",
-     id: Date.now(),
+     id: 15288170844556,
      completed: false
    }
+
     handleAdd = () => {
       this.setState({
         ...this.state,
